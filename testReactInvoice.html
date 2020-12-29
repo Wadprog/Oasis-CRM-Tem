@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--Adding react and React dom-->
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <!-- Adding Babel Stand alone -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <title>Create invoice</title>
+
+    <!-- Adding bootstrap -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- adding font Awesome-->
+    <link
+      href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    
+<script>
+    var clientes = [
+  { id : 1,name: 'antoine', color: 'blue' },
+  { id :2, name: 'pierr', color: 'rojo' }]
+    
+</script>
+
+<script type="text/babel">
+
+    
+class ClientDetails extends React.Component {
+  render() {
+    return (
+      <React.Fragment>
+        <div className="form-group">
+          <label className="badge badge-secondary p-2">
+            Informacion del cliente
+          </label>
+          <div className="form-group">
+            <label className="mb-0" htmlFor="clientName">
+              Nombre
+            </label>
+            <select className="form-control" id="exampleFormControlSelect1">
+              {
+                 this.props.clients.map(client=><option >{client.name}</option>)
+              }
+            </select>
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="mb-0" htmlFor="email">
+            Correo
+          </label>
+          <input value={this.props.selectedClient.email} id="email" type="text" className="form-control mt-0" />
+        </div>
+
+        <div className="form-group">
+          <label className="mb-0" htmlFor="address">
+            Dirreccion
+          </label>
+          <textarea id="addess" className="form-control" rows="3">{this.props.selectedClient.dirreccion}</textarea>
+        </div>
+      </React.Fragment>
+    )
+  }
+}
+
+class InvoiceDetails extends React.Component {
+  render() {
+    return (
+      <div className="border border-info p-2">
+        <form>
+            <div className="row">
+                <div className="col-md-6 col-sm-12">
+                    <ClientDetails
+                    clients={this.props.clients}
+                    selectedClient={this.props.selectedClient}
+                    />
+                </div>
+
+            </div>
+        </form>
+      </div>
+    )
+  }
+}
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+        clients:[],
+        selectedClient:{
+            name:"me",
+            email:"vavalSon@hotmail.com",
+            dirreccion:" Ave 3 alvarez "
+        }
+    }
+    
+    this.LoadClients=this.LoadClients.bind(this);
+    this.onError=this.onError.bind(this);
+  }
+  componentDidMount(){
+     google.script.run
+    .withFailureHandler(onError)
+    .withSuccessHandler(LoadClients)
+    .getAllClientsInOBJ();
+  }
+  
+  LoadClients (e){this.setState({clients:[{id:1,name:"none",}]});}
+  onError(e){console.log("Error");}
+  
+  render() {
+    return (
+      <div>
+        <div className="bg-secondary mb-4">
+          <a href="#">
+            <i className="fa fa-arrow-left"></i>
+            Facturas
+          </a>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col ">
+              <h5 className="h5">Crear Facturas</h5>
+            </div>
+            <div className="col d-flex justify-content-end mb-2">
+              <button type="button" className="btn mr-1 btn-info">
+                <i className="mr-1 fa fa-save"></i> Guardar
+              </button>
+              <button type="button" className="btn mr-1 btn-primary">
+                <i className="mr-1 fa fa-print"></i>Imprimir
+              </button>
+              <button type="button" className="btn mr-1 btn-warning">
+                <i className="mr-1 fa fa-send"></i>Enviar
+              </button>
+            </div>
+          </div>
+          <InvoiceDetails 
+          clients={this.state.clients}
+          selectedClient={this.state.selectedClient}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
+ReactDOM.render(<App />, document.getElementById('root'))
+
+ </script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+<style>
+    .form-modal {
+        display: block;
+        position: absolute;
+        color: white;
+        top: 0;
+        left: 0;
+        z-index: 900;
+        width: 100vw;
+        height: 100vh;
+        background: red; //rgba(0, 0, 0, .4);
+        justify-content: center;
+        align-items: center;
+        padding: 15px;
+    }
+
+    .form-modal-content {
+        width: 50%;
+        background: black;
+        padding: 5rem;
+        position: relative;
+    }
+
+    .form-modal-content p {
+        color: white;
+    }
+    
+    input[type="checkbox"]:checked ~  #venta{
+   display: flex;
+    }
+
+    .form-modal:target {
+       
+    }
+
+    .close-form-modal {
+        position: absolute;
+        width: 2rem;
+        height: 2rem;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        border-radius: 50%;
+        top: -1rem;
+        right: -1rem;
+
+
+    }
+
+    .form-footer {
+        border-top: 1px solid white;
+        width: 100%;
+        padding: 2rem;
+    }
+
+
+    .lg-textField {
+
+        height: 200px;
+        background: #f4f4f4;
+        padding: 0px 2px;
+        display: flex;
+        align-content: flex-start;
+        align-items: flex-start;
+        border-radius: 15px;
+
+    }
+</style>
+

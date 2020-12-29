@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+      <!-- Adding bootstrap --> 
+  
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+ <!-- adding font Awesome--> 
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+  <div class="mt-5 container justify-content-center">
+  
+  <div class="card" >
+    <div class="card-header">
+     Nuevo Cliente
+    </div>
+    <form onSubmit="addNewUser()" class="px-3 py-3">
+    
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" placeholder="Example input">
+    </div>
+    
+    
+    <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" placeholder="Another input">
+    </div>
+    <div class="form-group">
+    <label for="tel">Telefono</label>
+    <input type="text" class="form-control" id="tel" placeholder="Example input">
+    </div>
+    
+    <div class="form-group">
+    <label for="address">direccion</label>
+    <textarea class="form-control" id="address" placeholder="Dirrecion"></textarea>
+    </div>
+    <button  id="btn-" type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<div class="card-footer">
+<a href="https://script.google.com/macros/s/AKfycby7MrKJqbO1sFCoedZH4AC7b1Rjr83Wtc3Gjua3mLi-/dev?v=clients">
+<i class="fa fa-arrow-left"></i>
+</a>
+</div>
+ </div>
+ 
+  </div>
+  
+  
+<script>  
+ function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+  window.addEventListener('load', preventFormSubmit);
+  
+  function addNewUser(){
+    var name=document.getElementById('name').value;
+    var email= document.getElementById('email').value;
+    var telephone= document.getElementById('tel').value;
+    var direccion= document.getElementById('address').value;
+    
+    //Checking that the required fields are not Empty
+   
+    if( name!=""&& telephone!="" && direccion!=""){
+    google.script.run
+    .withFailureHandler(onError)
+    .withSuccessHandler(afterAddedClient).setCliente([name, email, telephone, direccion])
+   
+    }
+    else
+    alert('Favor llenar el formulario completamente Correo no es requirido'); 
+    }
+  function onError(e){
+  alert(' ERROR: PCSG Problemas con los Servidores de Google intenta mas tarde'+ e); 
+  }
+  function afterAddedClient(e){
+    var name=document.getElementById('name');
+    var email= document.getElementById('email');
+    var tel= document.getElementById('tel');
+    var dir= document.getElementById('address');
+    name.value="";email.value="";tel.value="";dir.value="";
+    alert("Cliente Creado con exito"); 
+  }
+  </script>
+ <script>
+  
+
+  
+  /*function addUser(){
+
+   alert("Jaja");
+    /* get all the datas */
+    var email= document.getElementById('email').value;
+    var telephone= document.getElementById('tel').value;
+    var direccion= document.getElementById('address').value;
+  
+    /* Cheking for empty fileds*/
+    if(email!=""&& telephone!="" && direccion!=""){
+    var data =[email, telephone, direccion];
+    google.script.run.setCliente(data);
+     alert('Datos insertado con exitos');
+  
+     // let us reset all  to blanck 
+     for(var i=0; i<data.length; i++)
+       data[i].innerHTML= "";
+  
+  else
+  alert("Favor llenar todo los requisitos"); 
+  }*/
+  
+ </script>
+  
+  
+  </body>
+  
+  
+  
+</html>
+
+

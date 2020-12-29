@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+      <!-- Adding bootstrap --> 
+  
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    
+ <!-- adding font Awesome--> 
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+  <div class="mt-5 container justify-content-center">
+  
+  <div class="card" >
+    <div class="card-header">
+     Nuevo Servicio
+    </div>
+    <form onSubmit="addNewService()" class="px-3 py-3">
+    
+    <div class="form-group">
+      <label for="name">Nombre</label>
+      <input type="text" class="form-control" id="name" placeholder="Example input">
+    </div>
+    
+    
+    <div class="form-group">
+    <label for="price">Precio</label>
+    <input type="text" class="form-control" id="price" placeholder="Another input">
+    </div>
+    
+    
+
+    <button type="submit" class="btn btn-primary">Registrar</button>
+</form>
+<div class="card-footer">
+<a href="https://script.google.com/macros/s/AKfycby7MrKJqbO1sFCoedZH4AC7b1Rjr83Wtc3Gjua3mLi-/dev?v=services">
+<i class="fa fa-arrow-left"></i>
+</a>
+</div>
+ </div>
+ 
+  </div>
+  
+  
+<script>  
+ function preventFormSubmit() {
+        var forms = document.querySelectorAll('form');
+        for (var i = 0; i < forms.length; i++) {
+          forms[i].addEventListener('submit', function(event) {
+            event.preventDefault();
+          });
+        }
+      }
+  window.addEventListener('load', preventFormSubmit);
+  
+  function addNewService(){
+  
+    var name=document.getElementById('name').value;
+    var price= document.getElementById('price').value;
+    //Checking that the required fields are not Empty
+   
+    if( name!=""&& price!=""){
+    google.script.run
+    .withFailureHandler(onError)
+    .withSuccessHandler(afterAddedService).setService([name, price]);
+   
+    }
+    else
+    alert('Favor llenar el formulario completamente'); 
+    }
+  function onError(e){
+  alert(' ERROR: PCSG Problemas con los Servidores de Google intenta mas tarde'+ e); 
+  }
+  function afterAddedService(e){
+    var name=document.getElementById('name');
+    var price= document.getElementById('price');
+    name.value="";price.value="";
+    alert("Servicio Agregado con exito"); 
+  }
+  </script>
+
+  </body>
+</html>
+
+

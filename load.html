@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    
+  <style>
+    body {
+      padding: 100px;
+      background: #eee;
+    }
+    .wrap {
+      text-align: center;
+      vertical-align: middle;
+      margin-bottom: 100px;
+      background: white;
+      padding-bottom: 100px;
+      box-shadow: 0px 40px 60px -20px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      padding: 50px;
+    }
+    .track {
+      width: 300px;
+      height: 0px;
+      border-top: 8px dotted #eee;
+      display: inline-block;
+    }
+    
+    .loader-container {
+      -webkit-animation: moveChomp 3s linear infinite;
+              animation: moveChomp 3s linear infinite;
+      background: none;
+      width: 0px;
+      height: 0px;
+      position: relative;
+      top: -15px;
+    }
+    
+    .loader {
+      background: none;
+      display: inline-block;
+      position: relative;
+    }
+    .loader:before, .loader:after {
+      content: "";
+      display: block;
+      height: 10px;
+      width: 10px;
+      border: 30px solid orangered;
+      border-radius: 50%;
+      border-right-color: transparent;
+      border-bottom-color: transparent;
+      position: absolute;
+      top: 50%;
+      margin-top: -34px;
+      animation: topchomp 1s ease-in-out infinite reverse;
+    }
+    .loader:after {
+      border-color: orangered;
+      border-top-color: transparent;
+      border-right-color: transparent;
+      -webkit-animation: bottomchomp 1s ease-in-out infinite;
+              animation: bottomchomp 1s ease-in-out infinite;
+    }
+    
+    @-webkit-keyframes bottomchomp {
+      0% {
+        -webkit-transform: rotate(10deg);
+                transform: rotate(10deg);
+      }
+      100% {
+        -webkit-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+      }
+    }
+    
+    @-webkit-keyframes topchomp {
+      0% {
+        -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+      }
+      100% {
+        -webkit-transform: rotate(-10deg);
+                transform: rotate(-10deg);
+      }
+    }
+    
+    @-webkit-keyframes moveChomp {
+      0% {
+        -webkit-transform: translateX(0px);
+                transform: translateX(0px);
+      }
+      100% {
+        -webkit-transform: translateX(275px);
+                transform: translateX(275px);
+      }
+    }
+    </style>
+    <script>
+function Redirect(){
+
+ window.location.href = "https://script.google.com/macros/s/AKfycby7MrKJqbO1sFCoedZH4AC7b1Rjr83Wtc3Gjua3mLi-/dev?v=clients";
+
+}
+</script>
+</head>
+  <body onload="setTimeout('Redirect()',1000);">
+    <div class="wrap">
+  <h1>LOADER</h1>
+  <div class="track">
+    <div class="loader-container">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>
+
+
+  </body>
+</html>
+
+
